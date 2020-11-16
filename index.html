@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html lang="en"> 
+
+	<head> 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+		<title>Testdrive Corona Offset POC</title> 
+
+		<style>
+			.time{
+				font-size: 10px;
+			}
+			.slot_text{
+				margin: auto;
+    			text-align: center;
+			}
+			.time_top{
+				position: absolute;
+  				top: 5px;
+  				left: 10px;
+			}
+			.time_bottom{
+				position: absolute;
+  				bottom: 5px;
+  				right: 10px;
+			}
+			.slot{
+				position: relative;
+				text-align: center;
+				display: flex;
+    			margin: auto;
+			}
+			.dayslot{
+				display: flex;
+			}
+			.timeslot{
+				margin:10px;
+			}
+			.ts_blocked{
+				background-color: rgb(209, 206, 201);
+				text-align: center;
+			}
+			.ts_open{
+				background-color: rgb(241, 235, 200);
+			}
+			.testdrive_slot{
+				background-color: orange
+			}
+			.buffer_slot{
+				background-color: green
+			}
+			.body_tag{
+				padding: 50px;
+			}
+		</style>
+	</head> 
+
+	<body id="body_tag" onload="reCalculate()"> 
+		<div class="summary" style="width: 1000px;">
+			
+		
+			<div class="selectors" style="float: left; width: 500px;">
+				<label for="opening">Event Opening</label>
+				<select id="opening" name="opening" onchange="reCalculate()">
+				  	<option value="300">5:00 AM</option>
+					<option value="315">5:15 AM</option>
+					<option value="330">5:30 AM</option>
+					<option value="345">5:45 AM</option>
+					 
+					<option value="360">6:00 AM</option>
+					<option value="375">6:15 AM</option>
+					<option value="390">6:30 AM</option>
+					<option value="405">6:45 AM</option>
+					 
+					<option value="420">7:00 AM</option>
+					<option value="435">7:15 AM</option>
+					<option value="450">7:30 AM</option>
+					<option value="465">7:45 AM</option>
+					 
+					<option value="480" selected="selected">8:00 AM</option>
+					<option value="495">8:15 AM</option>
+					<option value="510">8:30 AM</option>
+					<option value="525">8:45 AM</option>
+					 
+					<option value="540" >9:00 AM</option>
+					<option value="555">9:15 AM</option>
+					<option value="570">9:30 AM</option>
+					<option value="585">9:45 AM</option>
+					 
+					<option value="600">10:00 AM</option>
+					<option value="615">10:15 AM</option>
+					<option value="630">10:30 AM</option>
+					<option value="645">10:45 AM</option>
+					 
+					<option value="660">11:00 AM</option>
+					<option value="675">11:15 AM</option>
+					<option value="690">11:30 AM</option>
+					<option value="705">11:45 AM</option>
+					 
+					<option value="720">12:00 PM</option>
+					<option value="735">12:15 PM</option>
+					<option value="750">12:30 PM</option>
+					<option value="765">12:45 PM</option>
+					 
+					<option value="780">1:00 PM</option>
+					<option value="795">1:15 PM</option>
+					<option value="810">1:30 PM</option>
+					<option value="825">1:45 PM</option>
+					 
+					<option value="840">2:00 PM</option>
+					<option value="855">2:15 PM</option>
+					<option value="870">2:30 PM</option>
+					<option value="885">2:45 PM</option>
+					 
+					<option value="900">3:00 PM</option>
+					<option value="915">3:15 PM</option>
+					<option value="930">3:30 PM</option>
+					<option value="945">3:45 PM</option>
+					 
+					<option value="960">4:00 PM</option>
+					<option value="975">4:15 PM</option>
+					<option value="990">4:30 PM</option>
+					<option value="1005">4:45 PM</option>
+					 
+					<option value="1020">5:00 PM</option>
+					<option value="1035">5:15 PM</option>
+					<option value="1050">5:30 PM</option>
+					<option value="1065">5:45 PM</option>
+					 
+				</select>
+				<br>
+				<label for="closing">Event Closing</label>
+				<select id="closing" name="closing" onchange="reCalculate()">
+					 
+					<option value="720">12:00 PM</option>
+					<option value="735">12:15 PM</option>
+					<option value="750">12:30 PM</option>
+					<option value="765">12:45 PM</option>
+					 
+					<option value="780">1:00 PM</option>
+					<option value="795">1:15 PM</option>
+					<option value="810">1:30 PM</option>
+					<option value="825">1:45 PM</option>
+					 
+					<option value="840">2:00 PM</option>
+					<option value="855">2:15 PM</option>
+					<option value="870">2:30 PM</option>
+					<option value="885">2:45 PM</option>
+					 
+					<option value="900">3:00 PM</option>
+					<option value="915">3:15 PM</option>
+					<option value="930">3:30 PM</option>
+					<option value="945">3:45 PM</option>
+					 
+					<option value="960">4:00 PM</option>
+					<option value="975">4:15 PM</option>
+					<option value="990">4:30 PM</option>
+					<option value="1005">4:45 PM</option>
+					 
+					<option value="1020" selected="selected">5:00 PM</option>
+					<option value="1035">5:15 PM</option>
+					<option value="1050">5:30 PM</option>
+					<option value="1065">5:45 PM</option>
+					 
+					<option value="1080">6:00 PM</option>
+					<option value="1095">6:15 PM</option>
+					<option value="1110">6:30 PM</option>
+					<option value="1125">6:45 PM</option>
+					 
+					<option value="1140">7:00 PM</option>
+					<option value="1155">7:15 PM</option>
+					<option value="1170">7:30 PM</option>
+					<option value="1185">7:45 PM</option>
+					 
+					<option value="1200">8:00 PM</option>
+					<option value="1215">8:15 PM</option>
+					<option value="1230">8:30 PM</option>
+					<option value="1245">8:45 PM</option>
+					 
+					<option value="1260">9:00 PM</option>
+					<option value="1275">9:15 PM</option>
+					<option value="1290">9:30 PM</option>
+					<option value="1305">9:45 PM</option>
+					 
+					<option value="1320">10:00 PM</option>
+					<option value="1335">10:15 PM</option>
+					<option value="1350">10:30 PM</option>
+					<option value="1365">10:45 PM</option>
+					 
+					<option value="1380">11:00 PM</option>
+					<option value="1395">11:15 PM</option>
+					<option value="1410">11:30 PM</option>
+					<option value="1425">11:45 PM</option>
+				</select>
+
+				<br>
+
+				<label for="slot_size">Slot size</label>
+				<select id="slot_size" name="slot_size" onchange="reCalculate()">
+					<option value="15">15 min</option>
+					<option value="30">30 min</option>
+					<option value="45">45 min</option>
+					 
+					<option value="60" selected="selected">1h</option>
+					<option value="75">1h 15 min</option>
+					<option value="90">1h 30 min</option>
+				</select>
+
+				<br>
+				
+				<label for="no_cars">Number of cars</label>
+				<select id="no_cars" name="no_cars" onchange="reCalculate()">
+					<option value="1">1</option>
+					<option value="2" selected="selected">2</option>
+					<option value="3">3</option>
+					 
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</div>
+		</div>
+		
+		<br style="clear: left;">
+		<br>
+		<div class="dayslot" id="dayslot">
+		</div>
+
+		<pre>Generated slots data object</pre>
+		<pre id="slotjson"></pre>
+		
+		
+	</body> 
+
+	<script>
+	
+	function reCalculate(){
+		var opening = Number(document.getElementById("opening").value);
+		var closing = Number(document.getElementById("closing").value);
+		var slot_size = Number(document.getElementById("slot_size").value);
+		var no_cars = Number(document.getElementById("no_cars").value);
+
+		var slotsizeHours = Math.floor(slot_size/60);
+		var slotsizeMinutes = slot_size % 60;
+		var totalOpeningMinutes = closing - opening;
+		var openingHours = Math.floor(totalOpeningMinutes/60);
+		var openingMinutes = totalOpeningMinutes % 60;
+
+		var timeslots = Math.floor(totalOpeningMinutes/slot_size);
+
+		console.log("timeslots: " + timeslots);
+
+		var slack = totalOpeningMinutes % slot_size;
+		console.log("slack: " + slack);
+
+		var dayslot = document.getElementById("dayslot");
+		dayslot.innerHTML = "";
+
+		//Add cars (columns)
+		for (var i = 0; i < no_cars; i++) {
+			dayslot.innerHTML = dayslot.innerHTML + getCarslot(100/no_cars, i);
+			var carslot_id = "carslot" + i
+			var carslot = document.getElementById(carslot_id);
+			//add time slots (rows)
+			for (var j = 0; j < timeslots; j++) {
+				var start = opening + (slot_size * j);
+				carslot.innerHTML = carslot.innerHTML + getTimeslot(start, slot_size, "Car" + i);
+			}
+		}
+
+		generateJson();
+	};
+
+	function generateJson() {
+
+		var x = document.getElementById("dayslot");
+		var timeslotsHTML = x.getElementsByClassName("timeslot")
+		var bookingSlots = [];
+		for (let item of timeslotsHTML) {
+			if(hasClass(item, "ts_open")){
+		    	bookingSlots.push(getTimeSlotAsJson(item));
+		    }
+		}
+
+		document.getElementById("slotjson").textContent = JSON.stringify(bookingSlots, undefined, 2);
+	};
+
+	function prettyTime(minutesSinceMidnight) {
+		var hours = Math.floor(minutesSinceMidnight/60);
+		if(hours < 10)
+			hours = "0" + hours;
+		var minutes = minutesSinceMidnight % 60;
+		if (minutes < 15)
+			minutes = "00";
+
+	  	return hours + ":" + minutes;
+	};
+
+	function getCarslot(width, id) {
+		var html = `
+			<div id="carslot` + id + `" style="width: ` + width + `%">
+				<p>Car` + id + `</p>
+			</div>
+			`;
+	  return html;
+	};
+
+	function getTimeslot(start, duration, car) {
+		var html = `
+			<div class="timeslot ts_open" style="height:` + duration + `px; position: relative;" onclick="toggleSelected(this)" data-car="` + car + `" data-start="` + prettyTime(start) + `" data-end="` + prettyTime(start + duration) + `">
+				<span class="time time_top">` + prettyTime(start) + `</span>
+				<span class="slot_text"></span> 
+				<span class="time time_bottom">` + prettyTime(start + duration) + `</span>
+			</div> 
+			`;
+	  return html;
+	};
+
+	function toggleSelected(el) {
+	  var element = el;
+	  if(hasClass(element, "ts_open")){
+	  	removeClass(element, "ts_open");
+	  	addClass(element, "ts_blocked");
+	  }
+	  else{
+	  	addClass(element, "ts_open");
+	  	removeClass(element, "ts_blocked");
+	  }
+	  generateJson();
+	}
+
+	function hasClass(el, className)
+	{
+	    if (el.classList)
+	        return el.classList.contains(className);
+	    return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+	}
+
+	function addClass(el, className)
+	{
+	    if (el.classList)
+	        el.classList.add(className)
+	    else if (!hasClass(el, className))
+	        el.className += " " + className;
+	}
+
+	function removeClass(el, className)
+	{
+	    if (el.classList)
+	        el.classList.remove(className)
+	    else if (hasClass(el, className))
+	    {
+	        var reg = new RegExp('(\\s|^)' + className + '(\\s|$)');
+	        el.className = el.className.replace(reg, ' ');
+	    }
+	}
+
+	function getTimeSlotAsJson(timeslotHTML){
+
+		return new Timeslot(timeslotHTML.dataset.car, timeslotHTML.dataset.start, timeslotHTML.dataset.end);
+
+	}
+
+	function Timeslot(car, start, end) {
+	   this.car = car;
+	   this.start = start;
+	   this.end = end;
+	   return this;
+	}
+
+	
+
+
+	</script>
+
+</html>
