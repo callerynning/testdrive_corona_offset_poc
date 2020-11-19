@@ -1,0 +1,46 @@
+
+.time{
+	font-size: 10px;
+}
+.slot_text{
+	margin: auto;
+	text-align: center;
+}
+.time_top{
+	position: absolute;
+		top: 5px;
+		left: 10px;
+}
+.time_bottom{
+	position: absolute;
+		bottom: 5px;
+		right: 10px;
+}
+.slot{
+	position: relative;
+	text-align: center;
+	display: flex;
+	margin: auto;
+}
+.dayslot{
+	display: flex;
+}
+.timeslot{
+	margin:10px;
+}
+.ts_blocked{
+	background-color: rgb(209, 206, 201);
+	text-align: center;
+}
+.ts_open{
+	background-color: rgb(241, 235, 200);
+}
+.testdrive_slot{
+	background-color: orange
+}
+.buffer_slot{
+	background-color: green
+}
+.body_tag{
+	padding: 50px;
+}
